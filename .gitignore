@@ -1,4 +1,5 @@
-.venv/
-__pycache__/
-*.pyc
-.env
+echo "venv/" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "chroma_store/" >> .gitignore
+echo ".DS_Store" >> .gitignore

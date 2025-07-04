@@ -3,3 +3,5 @@ pymupdf
 chromadb
 python-dotenv
 openai
+PyPDF2
+langchain
