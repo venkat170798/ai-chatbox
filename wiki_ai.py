@@ -68,9 +68,10 @@ for msg in st.session_state.messages:
 prompt = st.chat_input("Ask from wiki...")
 
 # ✅ After user submits a question
+# ✅ After user submits a question
 if prompt:
-    # Show user message immediately
     st.session_state.messages.append({"role": "user", "content": prompt})
+
     st.markdown(f"""
         <div style="display: flex; justify-content: flex-start;">
             <div class="chat-message chat-user">{prompt}</div>
@@ -78,12 +79,12 @@ if prompt:
     """, unsafe_allow_html=True)
 
     with st.spinner("🤖 Thinking..."):
-        try:
-            answer = ask_from_confluence(prompt)
-        except Exception:
-            answer = get_response(prompt)
+        response = ask_from_confluence(prompt)
+        if not response:
+            response = get_response(prompt)
+            
+        answer = response.strip()    
 
-    # Show assistant message immediately
     st.markdown(f"""
         <div style="display: flex; justify-content: flex-end;">
             <div class="chat-message chat-assistant">{answer}</div>
@@ -91,3 +92,4 @@ if prompt:
     """, unsafe_allow_html=True)
 
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
